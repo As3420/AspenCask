@@ -1,36 +1,37 @@
-import React, { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import SideHeader from './components/SideHeader';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Portfolio from './pages/Portfolio';
-import Blog from './pages/Blog';
-import Contact from './pages/Contact';
-import Careers from './pages/Careers';
-import Resources from './pages/Resources';
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import SideHeader from "./components/SideHeader";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Portfolio from "./pages/Portfolio";
+import Blog from "./pages/Blog";
+import Contact from "./pages/Contact";
+import Careers from "./pages/Careers";
+import Resources from "./pages/Resources";
 
-import { HoverProvider } from './context/HoverContext'; // Import the HoverProvider for global hover state
-import './App.css';
+import { HoverProvider } from "./context/HoverContext"; // Import the HoverProvider for global hover state
+import "./App.css";
 
 const App: React.FC = () => {
   const location = useLocation();
 
   // Set document title based on the route
   useEffect(() => {
-    const pageTitles: { [key: string]: string } = {
-      '/': 'AspenCask - Home',
-      '/about': 'AspenCask - About',
-      '/services': 'AspenCask - Services',
-      '/portfolio': 'AspenCask - Portfolio',
-      '/blog': 'AspenCask - Blog',
-      '/contact': 'AspenCask - Contact',
-      '/careers': 'AspenCask - Careers',
-      '/resources': 'AspenCask - Resources',
-    };
-    
-    document.title = pageTitles[location.pathname] || 'AspenCask';
+    const pageTitles = {
+      "/": "AspenCask - Home",
+      "/about": "AspenCask - About",
+      "/services": "AspenCask - Services",
+      "/portfolio": "AspenCask - Portfolio",
+      "/blog": "AspenCask - Blog",
+      "/contact": "AspenCask - Contact",
+      "/careers": "AspenCask - Careers",
+      "/resources": "AspenCask - Resources",
+    } satisfies Record<string, string>;
+
+    document.title =
+      pageTitles[location.pathname as keyof typeof pageTitles] || "AspenCask";
   }, [location]);
 
   return (
